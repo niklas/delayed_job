@@ -10,7 +10,7 @@ module Delayed
     end
 
     def method_missing(method, *args)
-      Job.enqueue({:payload_object => @payload_class.new(@target, method.to_sym, args)}.merge(@options))
+      Delayed::Job.enqueue({:payload_object => @payload_class.new(@target, method.to_sym, args)}.merge(@options))
     end
   end
 
